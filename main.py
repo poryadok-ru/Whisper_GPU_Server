@@ -129,12 +129,12 @@ async def set_base_settings_model():
     try:
         model_instance = FasterWhisperModel()
         await model_instance.update_settings(
-            model=EnumModels.base, 
-            model_size_or_path=EnumModels.base, 
-            device=EnumDevices.cpu, 
+            model=EnumModels.large_v3, 
+            model_size_or_path=EnumModels.large_v3, 
+            device=EnumDevices.cuda, 
             device_index=0, 
-            compute_type=EnumComputeTypes.default, 
-            cpu_threads=4, 
+            compute_type=EnumComputeTypes.float16, 
+            cpu_threads=0, 
             num_workers=1
         )
         return StatusResponse(status=True, message="Базовые настройки успешно установлены")
@@ -153,7 +153,9 @@ async def set_base_settings_model():
 async def set_base_settings_transcription():
     try:
         model_instance = FasterWhisperModel()
-        await model_instance.transcribe_settings(language=EnumLanguages.ru, task="transcribe", log_progress=False, beam_size=5, best_of=5, patience=1, length_penalty=1, repetition_penalty=1, no_repeat_ngram_size=0, temperature=None, compression_ratio_threshold=2.4, log_prob_threshold=-1, no_speech_threshold=0.6, condition_on_previous_text=True, prompt_reset_on_temperature=0.5, initial_prompt=None, prefix=None, suppress_blank=True, suppress_tokens=[-1], without_timestamps=False, max_initial_timestamp=1, word_timestamps=False, prepend_punctuations="\"'“¿([{-", append_punctuations="\"'.。,，!！?？:：”)]}、", multilingual=False, vad_filter=False, vad_parameters=None, max_new_tokens=None, chunk_length=None, clip_timestamps="0", hallucination_silence_threshold=None, hotwords=None, language_detection_threshold=0.5, language_detection_segments=1)
+        await model_instance.transcribe_settings(
+            language=None,  
+            task="transcribe", log_progress=False, beam_size=3, best_of=5, patience=1, length_penalty=1, repetition_penalty=1, no_repeat_ngram_size=0, temperature=[0.0], compression_ratio_threshold=2.4, log_prob_threshold=-1, no_speech_threshold=0.6, condition_on_previous_text=True, prompt_reset_on_temperature=0.5, initial_prompt=None, prefix=None, suppress_blank=True, suppress_tokens=[-1], without_timestamps=False, max_initial_timestamp=1, word_timestamps=True, prepend_punctuations="\"'“¿([{-", append_punctuations="\"'.。,，!！?？:：”)]}、", multilingual=False, vad_filter=True, vad_parameters=None, max_new_tokens=None, chunk_length=None, clip_timestamps="0", hallucination_silence_threshold=None, hotwords=None, language_detection_threshold=0.5, language_detection_segments=1)
         return StatusResponse(status=True, message="Базовые настройки успешно установлены")
     except Exception as e:
         return StatusResponse(status=False, message=str(e))

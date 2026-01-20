@@ -339,7 +339,8 @@ class FasterWhisperModel:
             raise ValueError("Настройки транскрибации не установлены. Вызовите transcribe_settings() сначала.")
 
         def _transcribe():
-            segments_generator, info = self.model.transcribe(audio=audio, **self.call_settings)
+            filtered_settings = {k: v for k, v in self.call_settings.items() if v is not None}
+            segments_generator, info = self.model.transcribe(audio=audio, **filtered_settings)
             segments_list = list(segments_generator)
             return (segments_list, info)
 
