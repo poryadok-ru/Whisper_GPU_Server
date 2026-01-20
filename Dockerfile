@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.2.0-cudnn8-runtime-ubuntu22.04
+FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -7,6 +7,7 @@ ENV PORT=8000
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
+    libcublas12 libcublaslt12 \
     python3 python3-pip python3-venv ffmpeg git build-essential \
     && rm -rf /var/lib/apt/lists/*
 
