@@ -1,0 +1,94 @@
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+.ENV
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Documentation
+docs/
+# README.md можно оставить в образе для справки
+
+# Tests
+test_*.py
+*_test.py
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files (не копируем в Docker)
+.env
+.env.local
+.env.*.local
+
+# Audio files (тестовые файлы не нужны в образе)
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+*.aac
+
+# Docker files (Dockerfile нужен для сборки, но не нужен в образе)
+# Dockerfile оставляем, так как он может быть полезен для отладки
+.dockerignore
+docker-compose.yml
+docker-compose.*.yml
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# Models cache (если хотите скачивать модели при запуске)
+# models/
+# *.bin
+# *.pt
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# mypy
+.mypy_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

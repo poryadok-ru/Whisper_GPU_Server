@@ -87,4 +87,4 @@ Thumbs.db
 # *.flac
 
 # Docker
-.dockerignore
+# .dockerignore - нужен в репозитории
