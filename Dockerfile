@@ -8,16 +8,16 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     python3 python3-pip python3-venv python3-dev \
-    ffmpeg git build-essential \
+    ffmpeg git build-essential curl \
     libffi-dev libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Устанавливаем/обновляем pip
-RUN python3 -m ensurepip --upgrade || true && \
-    python3 -m pip install --upgrade pip setuptools wheel --break-system-packages
+# Обновляем pip до последней версии через get-pip.py
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3 - && \
+    python3 -m pip install --upgrade pip setuptools wheel
 
 COPY requirements.txt .
-# Устанавливаем зависимости
+# Устанавливаем зависимости (после обновления pip поддерживает --break-system-packages)
 RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
 
 COPY . .
