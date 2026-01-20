@@ -1,4 +1,4 @@
-FROM nvidia/cuda:13.1.0-devel-ubuntu24.04
+FROM nvidia/cuda:12.2.0-cudnn8-runtime-ubuntu22.04
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
